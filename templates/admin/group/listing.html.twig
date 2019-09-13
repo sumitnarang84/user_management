@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+{% block content %}
+ <div class="container-fluid">
+
+
+      {% if app.request.get('error') %}
+                  <div class="alert alert-danger">{{ app.request.get('error')  }}</div>
+          {% endif %}
+
+          {% if app.request.get('success') %}
+                  <div class="alert alert-success">{{ app.request.get('success')  }}</div>
+          {% endif %}
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Groups</h1>
+          <div class="card shadow mb-4">
+          <div class="card-body">
+          	<div class="table-responsive">
+          		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for group in groups %}
+                  <tr>
+                  <td>{{ group.name }}</td>
+                  <td><a href="javascript:void(0)" onclick="confirmDeletion({{ group.id }});">Delete</a></td>
+                  </tr>
+                  {% endfor %}
+               </table>
+          	</div>
+           </div>
+           
+
+
+</div>
+
+<script>
+function confirmDeletion(group_id) {
+    swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this group!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location.href=delete_group_loc.replace("-id-", group_id);
+    } else {
+      swal("Your group is not deleted!");
+    }
+  });
+}
+
+</script>
+
+{% endblock %}
+
+
+
+

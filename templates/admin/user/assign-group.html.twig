@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+{% block content %}
+<div class="container-fluid">
+<nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('view_users') }}">Users</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Assign Group</li>
+           
+          </ol>
+          </nav>
+ <div class="row">
+          
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Assign Group to {{user}}</h1>
+              </div>
+              {% if app.request.get('error') %}
+                  <div class="alert alert-danger">{{ app.request.get('error')  }}</div>
+          {% endif %}
+
+          {% if app.request.get('success') %}
+                  <div class="alert alert-success">{{ app.request.get('success')  }}</div>
+          {% endif %}
+              <form class="user" method="Post">
+                <div class="form-group row">
+                  <div class="col-sm-12 mb-3 mb-sm-0">
+                    <select class="form-control form-control-user" name="group" id="group"  required>
+                    <option value="">Select group</option>
+                    {% for group in groups %}
+                      <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  
+                </div>
+                
+                
+                <button class="btn btn-primary btn-user btn-block">
+                 Assign
+                </button>
+                <hr>
+                
+              </form>
+              
+              
+            </div>
+          </div>
+        </div>
+  </div>
+  {% endblock %}
+

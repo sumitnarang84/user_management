@@ -1,0 +1,14 @@
+# controllers:
+#     resource: ../../src/Controller/
+#     type: annotation
+
+web_controller:
+    resource: ../../src/Controller/Web/
+    type: annotation
+rest_controller:
+    resource: ../../src/Controller/Api/
+    type: annotation
+    prefix: /api
+login_controller:
+    resource: ../../src/Controller/LoginController.php
+    type: annotation

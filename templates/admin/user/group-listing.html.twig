@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+{% block content %}
+ <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Groups for {{ results.user.name }}</h1>
+
+          <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('view_users') }}">Users</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Groups</li>
+           
+          </ol>
+          </nav>
+
+          {% if app.request.get('error') %}
+                  <div class="alert alert-danger">{{ app.request.get('error')  }}</div>
+          {% endif %}
+
+          {% if app.request.get('success') %}
+                  <div class="alert alert-success">{{ app.request.get('success')  }}</div>
+          {% endif %}
+          <div class="card shadow mb-4">
+          <div class="card-body">
+          	<div class="table-responsive">
+          		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for res in results.groups %}
+                  <tr>
+                  <td>{{ res.name }}</td>
+                  <td><a href="{{ path('remove_group', {'id' : results.user.id , 'groupId' : res.id }) }}">Remove</a></td>
+                  </tr>
+                  {% endfor %}
+               </table>
+          	</div>
+           </div>
+           
+
+
+</div>
+
+{% endblock %}
+
+
+
+

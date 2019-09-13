@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+{% block content %}
+ <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Users</h1>
+
+          {% if app.request.get('error') %}
+                  <div class="alert alert-danger">{{ app.request.get('error')  }}</div>
+          {% endif %}
+
+          {% if app.request.get('success') %}
+                  <div class="alert alert-success">{{ app.request.get('success')  }}</div>
+          {% endif %}
+
+          <div class="card shadow mb-4">
+          <div class="card-body">
+          	<div class="table-responsive">
+          		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for row in users %}
+                  <tr>
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.email }}</td>
+                  <td>
+                    <a href="javascript:void(0)" onclick="confirmDeletion({{ row.id }});">Delete</a>|
+                    <a href="{{ path('assign_group', {'id' : row.id}) }}">Assign group</a>|
+                  	<a href="{{ path('view_user_groups', {'id' : row.id}) }}">View groups</a> 
+                  </td>
+                  </tr>
+                  {% endfor %}
+               </table>
+          	</div>
+           </div>
+           
+
+
+</div>
+<script>
+function confirmDeletion(user_id) {
+    swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this user!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location.href=delete_user_loc.replace("-id-", user_id);
+    } else {
+      swal("Your user is not deleted!");
+    }
+  });
+}
+
+</script>
+
+{% endblock %}
