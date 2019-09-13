@@ -25,7 +25,9 @@ class UserController extends BaseController
      */
 	public function list(Request $request) : View
 	{
-		
+		if (!$this->authorizeRequest($request)) {
+			return View::create(["success" => false, "message" => "You are not authorize to access this api"], Response::HTTP_OK);
+		}
 
 		$userRepo  = $this->getDoctrine()->getRepository(User::class);
 		$users 	   = $userRepo->findAllNameAndEmail();

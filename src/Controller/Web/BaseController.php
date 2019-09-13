@@ -38,7 +38,7 @@ class BaseController extends AbstractController
 			$content = $response->getContent();
 			
 			return json_decode($content, true);
-		} catch (\Exception $e) {dd($e);
+		} catch (\Exception $e) {
 			throw new \Exception("Unable to process the request");
 		}
 	}

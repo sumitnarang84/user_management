@@ -34,4 +34,13 @@ class LoginController extends AbstractController
     {
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
+
+    // /**
+    //  * @Route("/sd", name="app_home")
+    //  * 
+    //  */
+    //  public function index() 
+    //  {
+    //     return $this->redirectToRoute('app_login');
+    //  }
 }

@@ -1,0 +1,51 @@
+ To Setup the code 
+1) Go to project dir, run composer updata
+2) Change DB Settings in .env file
+3) Update the APP_URL value in .env
+
+4) Once deployed: Go to Login page:
+http://localhost:8000/login
+
+5) Enter admin credentials. admin@gmail.com/asdasd
+
+API:
+0) To Login
+
+
+1) To List all users
+GET /users
+
+2) To Add a new user
+POST /users
+{"name" => "Sumit", "email" => "sumitn1743@gmail.com", "password" => "asasd" }
+
+3) To Delete a user
+DELETE /user/{id}
+
+4) To List all Groups
+GET /groups
+
+5) To Add a new group
+POST /groups
+{"name" => "new group",
+
+6) To Delete a group
+DELETE /group/{id}
+
+7) To add a group to user
+Post /user/{id}/groups
+{"group" : 1}
+
+8) To remove a group from user
+DELETE /user/{id}/group/{groupId}
+{"group" : 1}
+
+9) To View user groups
+GET /user/{id}/groups
+
+
+
+
+
+
+
